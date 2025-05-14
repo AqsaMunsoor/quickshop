@@ -37,15 +37,13 @@ class ProductCubit extends Cubit<ProductState> {
           currentPage: 1,
           hasReachedMax: false,
           isLoadingMore: false,
-          search: ProductSearchInitial(), // Reset search state on full fetch
+          search: ProductSearchInitial(),
         ),
       );
     }
 
     try {
-      final dataFromApi =
-          await _repo
-              .fetch(); // This should use your ProductDataProvider's fetch
+      final dataFromApi = await _repo.fetch();
       final allFetchedProducts = dataFromApi.products;
 
       final initialDisplayProducts =
@@ -70,27 +68,20 @@ class ProductCubit extends Cubit<ProductState> {
   void loadMoreProducts() {
     if (state.isLoadingMore ||
         state.hasReachedMax ||
-        state.search
-            is ProductSearchSuccess || // Do not load more if a search result is displayed
+        state.search is ProductSearchSuccess ||
         state.search is ProductSearchLoading) {
-      // Do not load more if searching
       return;
     }
 
     emit(state.copyWith(isLoadingMore: true));
 
-    // Simulate a small delay for UX, or perform async operation
     Future.delayed(const Duration(milliseconds: 500), () {
       final nextPage = state.currentPage + 1;
-      final currentTotalDisplayed =
-          state.displayedProducts.length; // Before adding new ones
+      final currentTotalDisplayed = state.displayedProducts.length;
 
-      // Take from allProducts for pagination
       final newProducts =
           state.allProducts!
-              .skip(
-                currentTotalDisplayed,
-              ) // Skip what's already effectively shown from allProducts
+              .skip(currentTotalDisplayed)
               .take(ProductState.itemsPerPage)
               .toList();
 
@@ -113,17 +104,12 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   Future<void> searchProducts(String query) async {
-    emit(
-      state.copyWith(search: ProductSearchLoading(query: query)),
-    ); // Pass the actual query
+    emit(state.copyWith(search: ProductSearchLoading(query: query)));
 
     final normalizedQuery = query.toLowerCase();
 
-    // IMPORTANT CHANGE: Search within state.displayedProducts
-    // This means we are filtering the products *currently visible* or *loaded so far via pagination*.
     final results =
-        state
-            .displayedProducts // <--- MODIFIED HERE
+        state.displayedProducts
             .where(
               (product) =>
                   (product.title.toLowerCase().contains(normalizedQuery)) ||
@@ -134,14 +120,12 @@ class ProductCubit extends Cubit<ProductState> {
             )
             .toList();
 
-    // No network delay needed here as it's a local filter
     emit(
       state.copyWith(
         search: ProductSearchSuccess(results: results, query: query),
-        // When searching, displayedProducts becomes these filtered results.
+
         displayedProducts: results,
-        // For this local search strategy on currently displayed items,
-        // "load more" is not applicable to the search results themselves.
+
         hasReachedMax: true,
         isLoadingMore: false,
       ),
@@ -149,8 +133,6 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   void resetSearch() {
-    // When search is reset, revert to paginated view.
-    // displayedProducts should show all items loaded up to the current page.
     final productsToShowAfterReset =
         state.allProducts!
             .take(ProductState.itemsPerPage * state.currentPage)

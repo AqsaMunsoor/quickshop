@@ -1,7 +1,7 @@
 part of '../configs.dart';
 
 class AppProps {
-  //  Category & Product Cards
+
   static final categoryCard = _card(color: Colors.black54, borderRadius: 6);
 
   static final productCard = _card(
@@ -14,7 +14,6 @@ class AppProps {
     borderRadius: 12,
   );
 
-  //  Review & Comments
   static final review = _card(
     color: const Color(0xFFF9F9F9),
     borderColor: Colors.grey[200],
@@ -27,7 +26,6 @@ class AppProps {
     borderRadius: 8,
   );
 
-  //  Shared utility
   static BoxDecoration _card({
     Color? color,
     Color? borderColor,

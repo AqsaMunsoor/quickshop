@@ -35,15 +35,30 @@ class _Body extends StatelessWidget {
                 },
               ),
               Space.y.t10,
-              Text('${displayedCategories.length} results found:'),
+              if (isSuccess && displayedCategories.isNotEmpty)
+                Text('${displayedCategories.length} results found:'),
               Space.y.t20,
               if (isLoading)
                 const Expanded(
                   child: Center(child: CircularProgressIndicator()),
                 )
               else if (isFailed)
-                const Expanded(
-                  child: Center(child: Text('Failed to load categories.')),
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Failed to load products.'),
+                        Space.y.t10,
+                        AppButton(
+                          label: 'Retry',
+                          onPressed: () {
+                            productCubit.fetchCategory();
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 )
               else if (displayedCategories.isEmpty && isSuccess)
                 const Expanded(

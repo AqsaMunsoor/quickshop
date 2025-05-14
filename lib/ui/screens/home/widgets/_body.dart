@@ -70,7 +70,6 @@ class _BodyState extends State<_Body> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // ignore: prefer_const_constructors
                   AppHeader(title: 'Products', showBackButton: false),
                   Space.y.t20,
                   AppSearchTextInput(
@@ -89,7 +88,7 @@ class _BodyState extends State<_Body> {
                   Space.y.t06,
                 ],
               ),
-              // Main content area
+
               Expanded(
                 child: BlocBuilder<ProductCubit, ProductState>(
                   builder: (context, state) {
@@ -117,9 +116,11 @@ class _BodyState extends State<_Body> {
                           children: [
                             const Text('Failed to load products.'),
                             Space.y.t10,
-                            ElevatedButton(
-                              onPressed: () => productCubit.fetch(),
-                              child: const Text('Retry'),
+                            AppButton(
+                              label: 'Retry',
+                              onPressed: () {
+                                productCubit.fetch();
+                              },
                             ),
                           ],
                         ),

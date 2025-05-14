@@ -1,4 +1,4 @@
-part of 'cubit.dart'; // Assuming this is the top of your state file
+part of 'cubit.dart';
 
 // root-state
 @immutable
@@ -8,21 +8,16 @@ class ProductState extends Equatable {
   final FetchByIdState fetchById;
   final ProductSearchState search;
 
-  final List<Product>?
-  allProducts; // This will now represent ALL fetched products
+  final List<Product>? allProducts;
   final List<String>? categories;
-  final bool isFiltered;
-  final Map<String, dynamic>? filters;
-  final String? uid;
+
   final ProductCategoryState fetchByCategory;
 
-  // --- Pagination Fields ---
-  final List<Product> displayedProducts; // Products currently shown in the UI
-  final int currentPage; // Current page for pagination
-  final bool isLoadingMore; // To show a loader at the bottom
-  final bool hasReachedMax; // No more products to load
+  final List<Product> displayedProducts;
+  final int currentPage;
+  final bool isLoadingMore;
+  final bool hasReachedMax;
 
-  // --- Constant for pagination ---
   static const int itemsPerPage = 20;
 
   const ProductState({
@@ -30,13 +25,11 @@ class ProductState extends Equatable {
     required this.fetchCategory,
     required this.fetchById,
     required this.search,
-    this.allProducts, // This will become allProducts internally or on fetch
+    this.allProducts,
     this.categories,
-    this.isFiltered = false,
-    this.filters,
-    this.uid,
+
     required this.fetchByCategory,
-    // --- Initialize Pagination Fields ---
+
     this.displayedProducts = const [],
     this.currentPage = 1,
     this.isLoadingMore = false,
@@ -52,11 +45,8 @@ class ProductState extends Equatable {
     search,
     allProducts,
     categories,
-    isFiltered,
-    filters,
-    uid,
+
     fetchByCategory,
-    // --- Pagination Props ---
     displayedProducts,
     currentPage,
     isLoadingMore,
@@ -68,18 +58,18 @@ class ProductState extends Equatable {
     CategoryFetchState? fetchCategory,
     FetchByIdState? fetchById,
     ProductSearchState? search,
-    List<Product>? allProducts, // This sets the master list of all products
+    List<Product>? allProducts,
     List<String>? categories,
     bool? isFiltered,
     Map<String, dynamic>? filters,
     String? uid,
     ProductCategoryState? fetchByCategory,
-    // --- Pagination copyWith Params ---
+
     List<Product>? displayedProducts,
     int? currentPage,
     bool? isLoadingMore,
     bool? hasReachedMax,
-    // Helper to reset products and pagination, e.g., on a fresh fetch
+
     bool resetPaginationAndProducts = false,
   }) {
     return ProductState(
@@ -90,11 +80,9 @@ class ProductState extends Equatable {
       allProducts:
           resetPaginationAndProducts ? [] : (allProducts ?? this.allProducts),
       categories: categories ?? this.categories,
-      isFiltered: isFiltered ?? this.isFiltered,
-      filters: filters ?? this.filters,
-      uid: uid ?? this.uid,
+
       fetchByCategory: fetchByCategory ?? this.fetchByCategory,
-      // --- Pagination copyWith Logic ---
+
       displayedProducts:
           resetPaginationAndProducts
               ? []
@@ -123,16 +111,7 @@ class ProductStateDefault extends ProductState {
         fetchCategory: const CategoryFetchState(),
         fetchByCategory: const ProductCategoryState(),
         search: const ProductSearchState(),
-        // products is nullable, defaults to null or initial empty list if needed
-        allProducts:
-            const [], // Initialize as empty or null based on your preference
-        // categories is nullable
-        // isFiltered defaults to false
-        // filters is nullable
-        // uid is nullable
-        // --- Pagination Defaults in Super Constructor ---
-        // displayedProducts, currentPage, isLoadingMore, hasReachedMax
-        // will use their defaults defined in the ProductState constructor
-        // i.e., displayedProducts: [], currentPage: 1, etc.
+
+        allProducts: const [],
       );
 }

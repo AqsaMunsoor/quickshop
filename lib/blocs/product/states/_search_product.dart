@@ -1,6 +1,5 @@
 part of '../cubit.dart';
 
-// Add this to your existing state classes
 @immutable
 class ProductSearchState extends Equatable {
   final List<Product>? results;
@@ -31,6 +30,5 @@ class ProductSearchSuccess extends ProductSearchState {
 
 @immutable
 class ProductSearchFailed extends ProductSearchState {
-  const ProductSearchFailed({String? query, String? message})
-    : super(query: query, message: message);
+  const ProductSearchFailed({super.query, super.message});
 }

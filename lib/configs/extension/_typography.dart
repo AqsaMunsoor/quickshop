@@ -19,5 +19,5 @@ extension AppTextStyleExtensions on AppTextStyle {
 
   AppTextStyle get blackColor => copyWith(color: Colors.black);
   AppTextStyle get whiteColor => copyWith(color: Colors.white);
-  // Add other color extensions as needed from your configs.dart
+
 }

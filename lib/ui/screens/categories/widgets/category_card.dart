@@ -29,7 +29,7 @@ class CategoryCard extends StatelessWidget {
                 child: Image.asset(
                   imagePath,
                   fit: BoxFit.cover,
-                  height: 120, // <- Set height instead of using Expanded
+                  height: 120,
                   width: double.infinity,
                 ),
               ),

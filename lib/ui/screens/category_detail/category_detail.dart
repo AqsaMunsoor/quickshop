@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:quickshop/blocs/product/cubit.dart';
+
 import 'package:quickshop/configs/configs.dart';
 import 'package:quickshop/models/product/product.dart';
 import 'package:quickshop/ui/widgets/cards/product_card.dart';

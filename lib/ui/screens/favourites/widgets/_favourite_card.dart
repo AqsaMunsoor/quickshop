@@ -19,7 +19,6 @@ class FavoriteCard extends StatelessWidget {
         padding: Space.p.all.t10,
         child: Row(
           children: [
-            // Product Image
             Container(
               width: 80,
               height: 80,
@@ -38,7 +37,6 @@ class FavoriteCard extends StatelessWidget {
             ),
             Space.x.t12,
 
-            // Product Details
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +55,6 @@ class FavoriteCard extends StatelessWidget {
               ),
             ),
 
-            // Favorite Button
             IconButton(
               onPressed: () {
                 favoriteProvider.removeFromFavorites(product);

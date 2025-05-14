@@ -30,37 +30,30 @@ class _BodyState extends State<_Body> {
             }).toList();
 
     return Screen(
-      padding: Space.p.screen,
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       keyboardHandler: true,
       bottomBar: true,
       child: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const AppHeader(title: 'Favourites', showBackButton: false),
-                  Space.y.t20,
-                  AppSearchTextInput(
-                    hintText: 'Search in favorites...',
-                    showPrefixIcon: true,
-                    showNoteText: true,
-                    onFieldSubmitted: (value) {
-                      setState(() {});
-                    },
-                  ),
-
-                  Space.y.t08,
-                  Text(
-                    '${displayedFavorites.length} result${displayedFavorites.length == 1 ? '' : 's'} found',
-                    style: AppText.t16 + AppColors.inActive[600],
-                  ),
-                ],
-              ),
+            const AppHeader(title: 'Favourites', showBackButton: false),
+            Space.y.t20,
+            AppSearchTextInput(
+              hintText: 'Search in favorites...',
+              showPrefixIcon: true,
+              showNoteText: true,
+              onFieldSubmitted: (value) {
+                setState(() {});
+              },
             ),
+
+            Space.y.t08,
+            Text(
+              '${displayedFavorites.length} result${displayedFavorites.length == 1 ? '' : 's'} found',
+              style: AppText.t16 + AppColors.inActive[600],
+            ),
+
             Space.y.t10,
             if (displayedFavorites.isEmpty)
               Expanded(

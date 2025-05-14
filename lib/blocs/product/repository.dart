@@ -14,7 +14,7 @@ class ProductRepository {
     return await _dataLayer.searchProducts(query);
   }
 
-  // Add this to your ProductRepository class
+
   Future<ProductResponse> fetchByCategory(String category) async {
     return await _dataLayer.fetchByCategory(category);
   }

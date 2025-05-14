@@ -4,14 +4,13 @@ class ProductProvider {
   Dio? localClient;
   ProductProvider({Dio? client}) : localClient = client;
 
-  final Dio _dio = Dio(); // You can configure Dio here if needed
+  final Dio _dio = Dio();
 
   Future<ProductResponse> fetch() async {
     try {
-      // You might want to adjust the limit to a very high number or modify your API
       final response = await _dio.get(
         'https://dummyjson.com/products',
-        queryParameters: {'limit': 194}, // Adjust this as needed
+        queryParameters: {'limit': 194},
       );
       final raw = response.data as Map<String, dynamic>;
       return ProductResponse.fromJson(raw);
@@ -85,7 +84,6 @@ class ProductProvider {
     }
   }
 
-  // Add this to your ProductProvider class
   Future<ProductResponse> fetchByCategory(String category) async {
     try {
       final response = await _dio.get(

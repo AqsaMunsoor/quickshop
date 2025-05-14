@@ -57,11 +57,9 @@ class _BodyState extends State<_Body> {
           children: [
             AppHeader(title: category?.titleCase ?? 'Category'),
             Space.y.t20,
-            // Products list with BlocBuilder
             Expanded(
               child: BlocBuilder<ProductCubit, ProductState>(
                 buildWhen: (previous, current) {
-                  // Rebuild only when category-related states change
                   return previous.fetchByCategory != current.fetchByCategory ||
                       previous.isLoadingMore != current.isLoadingMore;
                 },
@@ -74,7 +72,6 @@ class _BodyState extends State<_Body> {
                       state.fetchByCategory is ProductCategoryFailed;
                   final products = state.fetchByCategory.products ?? [];
 
-                  // Products count
                   if (isSuccess || isLoading) {
                     return Column(
                       children: [
