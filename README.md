@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Store App - E-Commerce Product Catalog
+=======
+# QuickShop - E-Commerce Product Catalog
+>>>>>>> ba96bd341d0486d172ce18a3c3ac239e7e072270
 
 ## Overview
 
@@ -16,19 +20,26 @@ Store App is a Flutter-based mobile application that provides a comprehensive e-
 ## Technical Specifications
 
 ### Architecture
+<<<<<<< HEAD
 
+=======
+>>>>>>> ba96bd341d0486d172ce18a3c3ac239e7e072270
 - Clean Architecture principles
 - BLoC pattern for state management
 - Repository pattern for data layer
 
 ### API Integration
+<<<<<<< HEAD
 
+=======
+>>>>>>> ba96bd341d0486d172ce18a3c3ac239e7e072270
 - Products: `https://dummyjson.com/products?limit=100`
 - Single Product: `https://dummyjson.com/products/{productId}`
 - Categories: `https://dummyjson.com/products/categories`
 
 ### Dependencies
 
+<<<<<<< HEAD
 | Category         | Packages                                 |
 | ---------------- | ---------------------------------------- |
 | State Management | provider, flutter_bloc, equatable        |
@@ -45,9 +56,70 @@ Store App is a Flutter-based mobile application that provides a comprehensive e-
 - Dart SDK (version 3.0.0 or higher)
 - Android Studio/Xcode (for emulator/simulator)
 
+=======
+| Category          | Packages                          |
+|-------------------|-----------------------------------|
+| State Management  | provider, flutter_bloc, equatable |
+| Networking        |  dio                        |
+| UI Components     | cached_network_image, flutter_screenutil |
+| Utilities         | intl, path_provider              |
+| Development       | freezed, json_serializable, build_runner |
+
+## Installation
+
+>>>>>>> ba96bd341d0486d172ce18a3c3ac239e7e072270
 ### Setup Instructions
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/store_app.git
    ```
+<<<<<<< HEAD
+=======
+
+2. Navigate to project directory:
+   ```bash
+   cd store_app
+   ```
+
+3. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+
+4. Generate necessary files:
+   ```bash
+   flutter pub run build_runner build --delete-conflicting-outputs
+   ```
+
+5. Run the application:
+   ```bash
+   flutter run
+   ```
+
+## Project Structure
+
+```
+lib/
+├── blocs/
+├── configs/
+├── models/
+├── providers/
+├── router/
+├── static/
+├── ui/
+│   ├── screens/
+│   ├── widgets/
+└── main.dart
+```
+
+## Screens
+
+1. **Splash Screen**: Branding and initial loading
+2. **Products Screen**: Grid/list view of all products
+3. **Categories Screen**: List of product categories
+4. **Category Products Screen**: Filtered products by category
+5. **Product Details Screen**: Comprehensive product information
+6. **Favorites Screen**: User's saved products
+7. **Profile Screen**: User information display
+>>>>>>> ba96bd341d0486d172ce18a3c3ac239e7e072270
