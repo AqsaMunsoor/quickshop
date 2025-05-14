@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppSearchTextInput extends StatefulWidget {
-  final TextEditingController? controller;
+class AppSearchTextInput extends StatelessWidget {
   final String hintText;
   final VoidCallback? onClear;
   final ValueChanged<String>? onFieldSubmitted;
@@ -10,7 +9,6 @@ class AppSearchTextInput extends StatefulWidget {
 
   const AppSearchTextInput({
     Key? key,
-    this.controller,
     required this.hintText,
     this.onClear,
     this.onFieldSubmitted,
@@ -19,56 +17,23 @@ class AppSearchTextInput extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AppSearchTextInputState createState() => _AppSearchTextInputState();
-}
-
-class _AppSearchTextInputState extends State<AppSearchTextInput> {
-  late TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = widget.controller ?? TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
-          controller: _controller,
-          onFieldSubmitted:
-              widget.onFieldSubmitted, // Use onFieldSubmitted here
+          onFieldSubmitted: onFieldSubmitted,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
               vertical: 10,
               horizontal: 15,
             ),
-            hintText: widget.hintText,
-            prefixIcon: widget.showPrefixIcon ? const Icon(Icons.search) : null,
-            suffixIcon:
-                _controller.text.isNotEmpty
-                    ? IconButton(
-                      icon: const Icon(Icons.clear),
-                      onPressed: () {
-                        _controller.clear();
-                        if (widget.onClear != null) {
-                          widget.onClear!();
-                        }
-                      },
-                    )
-                    : null,
+            hintText: hintText,
+            prefixIcon: showPrefixIcon ? const Icon(Icons.search) : null,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           ),
         ),
-        if (widget.showNoteText)
+        if (showNoteText)
           const Padding(
             padding: EdgeInsets.only(top: 8),
             child: Row(

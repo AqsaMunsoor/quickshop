@@ -18,7 +18,7 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteProvider = Provider.of<FavoriteProvider>(context);
+    final favoriteProvider = FavoriteProvider.state(context);
     final favorites = favoriteProvider.favorites;
 
     final searchQuery = _searchController.text.toLowerCase();
@@ -45,7 +45,6 @@ class _BodyState extends State<_Body> {
                   const AppHeader(title: 'Favourites', showBackButton: false),
                   Space.y.t20,
                   AppSearchTextInput(
-                    controller: _searchController,
                     hintText: 'Search in favorites...',
                     showPrefixIcon: true,
                     showNoteText: true,

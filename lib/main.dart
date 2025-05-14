@@ -8,6 +8,8 @@ import 'package:quickshop/providers/favourite.dart';
 import 'package:quickshop/router/router.dart';
 import 'package:quickshop/router/routes.dart';
 
+import 'package:navigation_history_observer/navigation_history_observer.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         title: 'Store App',
         debugShowCheckedModeBanner: false,
         navigatorKey: navigator,
-        // navigatorObservers: [NavigationHistoryObserver(), routeObserver],
+        navigatorObservers: [NavigationHistoryObserver(), routeObserver],
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: const ColorScheme.light(primary: Colors.black),

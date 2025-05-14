@@ -74,7 +74,6 @@ class _BodyState extends State<_Body> {
                   AppHeader(title: 'Products', showBackButton: false),
                   Space.y.t20,
                   AppSearchTextInput(
-                    controller: _searchController,
                     hintText: 'Search for products in ...',
                     onFieldSubmitted: (value) {
                       if (value.isEmpty) {

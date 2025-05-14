@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quickshop/models/product/product.dart';
+import 'package:provider/provider.dart';
 
 class FavoriteProvider with ChangeNotifier {
+  static FavoriteProvider state(BuildContext context) =>
+      Provider.of<FavoriteProvider>(context, listen: false);
   final List<Product> _favoriteProducts = [];
 
   List<Product> get favorites => _favoriteProducts;
