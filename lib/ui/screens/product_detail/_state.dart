@@ -2,7 +2,7 @@ part of 'product_detail.dart';
 
 class _ScreenState extends ChangeNotifier {
   _ScreenState({required Map<String, dynamic> args}) {
-    // Handle both String and int product IDs
+    
     final dynamic id = args['productId'];
     productId = id is int ? id.toString() : id as String;
   }
