@@ -37,11 +37,25 @@ class _BodyState extends State<_Body> {
   }
 
   void _onScroll() {
+    if (!mounted) return; 
+
     if (_isBottom) {
       final productCubit = ProductCubit.c(context);
       if (productCubit.state.search is! ProductSearchSuccess &&
           productCubit.state.search is! ProductSearchLoading) {
         productCubit.loadMoreProducts();
+      }
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_hasFetched) {
+      final productCubit = ProductCubit.c(context);
+      if (productCubit.state.displayedProducts.isEmpty) {
+        productCubit.fetch();
+        _hasFetched = true;
       }
     }
   }
