@@ -39,9 +39,7 @@ class _Body extends StatelessWidget {
                 Text('${displayedCategories.length} results found:'),
               Space.y.t20,
               if (isLoading)
-                const Expanded(
-                  child: Center(child: CircularProgressIndicator()),
-                )
+                const _Placeholder()
               else if (isFailed)
                 Expanded(
                   child: Center(

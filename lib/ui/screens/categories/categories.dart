@@ -12,11 +12,13 @@ import 'package:quickshop/ui/widgets/input/app_search_input.dart';
 import 'package:quickshop/ui/widgets/screen/screen.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:quickshop/ui/widgets/shimmer/category_card.dart';
 
 part '_state.dart';
 
 part 'widgets/_body.dart';
 part 'widgets/category_card.dart';
+part 'widgets/_placeholder.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});

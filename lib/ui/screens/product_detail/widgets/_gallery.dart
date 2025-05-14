@@ -1,4 +1,3 @@
-
 part of '../product_detail.dart';
 
 class _Gallery extends StatelessWidget {
@@ -27,7 +26,7 @@ class _Gallery extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
                 imageUrl: images[index],
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 alignment: Alignment.center,
                 placeholder:
                     (context, url) =>

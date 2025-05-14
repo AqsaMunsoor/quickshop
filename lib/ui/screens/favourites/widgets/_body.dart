@@ -8,25 +8,20 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-  final _searchController = TextEditingController();
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
+  String _searchQuery = '';
 
   @override
   Widget build(BuildContext context) {
-    final favoriteProvider = FavoriteProvider.state(context);
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
     final favorites = favoriteProvider.favorites;
 
-    final searchQuery = _searchController.text.toLowerCase();
     final displayedFavorites =
-        searchQuery.isEmpty
+        _searchQuery.isEmpty
             ? favorites
             : favorites.where((product) {
-              return product.title.toLowerCase().contains(searchQuery);
+              return product.title.toLowerCase().contains(
+                _searchQuery.toLowerCase(),
+              );
             }).toList();
 
     return Screen(
@@ -44,26 +39,20 @@ class _BodyState extends State<_Body> {
               showPrefixIcon: true,
               showNoteText: true,
               onFieldSubmitted: (value) {
-                setState(() {});
+                setState(() {
+                  _searchQuery = value;
+                });
               },
             ),
-
             Space.y.t08,
             Text(
               '${displayedFavorites.length} result${displayedFavorites.length == 1 ? '' : 's'} found',
               style: AppText.t16 + AppColors.inActive[600],
             ),
-
             Space.y.t10,
             if (displayedFavorites.isEmpty)
-              Expanded(
-                child: Center(
-                  child: Text(
-                    _searchController.text.isEmpty
-                        ? 'No favorite products yet'
-                        : 'No matching favorites found',
-                  ),
-                ),
+              const Expanded(
+                child: Center(child: Text('No matching favorites found')),
               )
             else
               Expanded(

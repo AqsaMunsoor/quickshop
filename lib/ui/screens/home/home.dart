@@ -10,12 +10,14 @@ import 'package:quickshop/ui/widgets/input/app_search_input.dart';
 import 'package:quickshop/ui/widgets/screen/screen.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickshop/ui/widgets/shimmer/product_card.dart';
 
 import '../../widgets/cards/product_card.dart';
 
 part '_state.dart';
 
 part 'widgets/_body.dart';
+part 'widgets/_placeholder.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

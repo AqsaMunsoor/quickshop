@@ -6,7 +6,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteProvider = FavoriteProvider.state(context);
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -14,7 +14,19 @@ class ProductDetails extends StatelessWidget {
           width: double.infinity,
           height: 250,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-          child: Image.network(product.images.first, fit: BoxFit.contain),
+          child: CachedNetworkImage(
+            imageUrl: product.images.first,
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            placeholder:
+                (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+            errorWidget:
+                (context, url, error) => Container(
+                  color: AppColors.inActive[200],
+                  child: const Icon(Icons.error, color: Colors.red),
+                ),
+          ),
         ),
         Space.y.t20,
         Row(
