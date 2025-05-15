@@ -1,6 +1,3 @@
-
-# Store App - E-Commerce Product Catalog
-
 # QuickShop - E-Commerce Product Catalog
 
 ## Overview
